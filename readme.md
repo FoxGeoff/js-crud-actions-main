@@ -159,3 +159,5 @@ document.getElementById('load').onclick = function () {
 
 };
 ```
+
+1. Using a library for requests -axios (http library)

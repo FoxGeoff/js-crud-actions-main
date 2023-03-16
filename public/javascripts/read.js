@@ -1,4 +1,8 @@
 document.getElementById('load').onclick = function () {
+  axios.get('/api/products').then(addList);
+
+
+  /*
   const req = new XMLHttpRequest();
   req.open('GET', '/api/products');
   req.onload = function () {
@@ -6,9 +10,10 @@ document.getElementById('load').onclick = function () {
     console.log(data);
     addList({ data });
   };
-  req.send(); //call API
+  req.send(); //call API 
+*/
 
-};
+}; 
 //******************/
 /* html call */
 function addList({ data }) {
