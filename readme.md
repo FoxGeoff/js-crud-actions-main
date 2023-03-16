@@ -16,12 +16,14 @@
 2. Getting a Product
 
 ```javascript
-/* file: products.js - list */
+/* file: products.js - list all records */
+...
 module.exports = function (db) {
   router.get('/products', (req, res) => {
     res.send(db.get('products').value());
   });
   return router;
+...
 };
 ```
 
@@ -51,10 +53,23 @@ module.exports = function (db) {
 
 ```javascript
 /* delete */
+...
   router.delete('/products/:id', (req, res) => {
     db.get('products').remove({ id: req.params.id }).write();
     res.status().send();
   });
+...
 ```
 
 1. Working with Specific Records - delete
+
+```javascript
+/* GET a specific record */
+...
+  router.get('/products/:id', (req, res) => {
+    res.send(db.get('products').find({ id: req.params.id }).value());
+  });
+...
+```
+
+1. Working with Specific Records - list

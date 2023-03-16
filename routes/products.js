@@ -22,5 +22,9 @@ module.exports = function (db) {
     res.status().send();
   });
 
+  router.get('/products/:id', (req, res) => {
+    res.send(db.get('products').find({ id: req.params.id }).value());
+  });
+
   return router;
 };
