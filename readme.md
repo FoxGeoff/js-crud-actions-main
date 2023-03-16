@@ -16,7 +16,7 @@
 2. Getting a Product
 
 ```javascript
-/* file: products.js */
+/* file: products.js - list */
 module.exports = function (db) {
   router.get('/products', (req, res) => {
     res.send(db.get('products').value());
@@ -28,6 +28,7 @@ module.exports = function (db) {
 1. Creating Records
 
 ```javascript
+/* create */
 ...
   router.post('/products', (req, res) => {
     const newProduct = req.body;
@@ -36,4 +37,24 @@ module.exports = function (db) {
 ...
 ```
 
+```javascript
+/* edit */
+...
+  router.patch('/products/:id', (req, res) => {
+    res.send(
+      db.get('products').find({ id: req.params.id }).assign(req.body).write()
+    );
+  });
+```
+
 1. Working with Specific Records - edit
+
+```javascript
+/* delete */
+  router.delete('/products/:id', (req, res) => {
+    db.get('products').remove({ id: req.params.id }).write();
+    res.status().send();
+  });
+```
+
+1. Working with Specific Records - delete

@@ -17,5 +17,10 @@ module.exports = function (db) {
     );
   });
 
+  router.delete('/products/:id', (req, res) => {
+    db.get('products').remove({ id: req.params.id }).write();
+    res.status().send();
+  });
+
   return router;
 };
