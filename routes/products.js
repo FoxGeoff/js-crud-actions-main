@@ -11,5 +11,11 @@ module.exports = function (db) {
     res.send(db.get('products').insert(newProduct).write());
   });
 
+  router.patch('/products/:id', (req, res) => {
+    res.send(
+      db.get('products').find({ id: req.params.id }).assign(req.body).write()
+    );
+  });
+
   return router;
 };
