@@ -14,6 +14,18 @@
       "quantity": 99,
       "id": "e5126319-3c4f-4415-b2d2-ffa36d339a84",
       "description": "two left feet!"
+    },
+    {
+      "name": "Rugged Hiking Boots",
+      "price": 555.99,
+      "quantity": 99,
+      "id": "139eb601-d4c5-4477-bc06-bbf4fefd2358"
+    },
+    {
+      "name": "Non-Rugged Hiking Boots",
+      "price": 0.5,
+      "quantity": 1,
+      "id": "4ceacd97-f38b-4b5d-b992-abfcf43eb690"
     }
   ]
 }
