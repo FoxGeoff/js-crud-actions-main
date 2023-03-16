@@ -13,3 +13,14 @@
 ### Task: Creating the API (Module 1)
 
 1. Setting up the project
+2. Getting a Product
+
+```javascript
+/* file: products.js */
+module.exports = function (db) {
+  router.get('/products', (req, res) => {
+    res.send(db.get('products').value());
+  });
+  return router;
+};
+```
