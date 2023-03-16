@@ -24,3 +24,14 @@ module.exports = function (db) {
   return router;
 };
 ```
+
+1. Creating Records
+
+```javascript
+...
+  router.post('/products', (req, res) => {
+    const newProduct = req.body;
+    res.send(db.get('products').insert(newProduct).write());
+  });
+...
+```
