@@ -173,4 +173,37 @@ document.getElementById('load').onclick = function () {
   }
 ```
 
+Task: Handle missing Records (clip)
 
+```javascript
+/* file: routes/products.js */
+  .delete((req, res) => {
+    db.get('products').remove({ id: req.params.id }).write();
+    res.status().send();
+  }).get((req, res) => {     //<= here
+    const result = db.get('products').find({ id: req.params.id }).value()
+    if(result) {
+      res.send(result);
+    } else {
+      res.status(404).send();
+    }
+```
+
+```javascript
+/* public/javascript/read.js */
+document.getElementById('load').onclick = function () {
+  const value = document.getElementById('product-id').value;
+  if (value === '') {
+    axios.get('/api/products').then(addList);
+  } else {
+    axios
+      .get(`api/products/${value}`)
+      .then(addSingle)
+      .catch((error) => {
+        if (error.response.status === 404) {
+          notFound();
+        }
+      });
+  }
+...
+```
