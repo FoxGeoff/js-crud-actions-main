@@ -1,6 +1,10 @@
 document.getElementById('load').onclick = function () {
-  axios.get('/api/products').then(addList);
-
+  const value = document.getElementById('product-id').value;
+  if (value === '') {
+    axios.get('/api/products').then(addList);
+  } else {
+    axios.get(`api/products/${value}`).then(addSingle);
+  }
 
   /*
   const req = new XMLHttpRequest();
@@ -9,11 +13,10 @@ document.getElementById('load').onclick = function () {
     const data = JSON.parse(req.response);
     console.log(data);
     addList({ data });
-  };
+  }; 
   req.send(); //call API 
 */
-
-}; 
+};
 //******************/
 /* html call */
 function addList({ data }) {
