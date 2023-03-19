@@ -207,3 +207,7 @@ document.getElementById('load').onclick = function () {
   }
 ...
 ```
+
+### Task: Creating a Ne Product
+
+1. in public/javascript/create.js
