@@ -161,3 +161,16 @@ document.getElementById('load').onclick = function () {
 ```
 
 1. Using a library for requests -axios (http library)
+
+```javascript
+
+document.getElementById('load').onclick = function () {
+  const value = document.getElementById('product-id').value;
+  if (value === '') {
+    axios.get('/api/products').then(addList);
+  } else {
+    axios.get(`api/products/${value}`).then(addSingle);
+  }
+```
+
+
