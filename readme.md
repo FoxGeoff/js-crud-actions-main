@@ -229,3 +229,7 @@ document.getElementById("submit").onclick = function (evt) {
 ```
 
 ### Task: Updating an Existing Product (clip 3:7)
+
+1. Ref <https://app.pluralsight.com/course-player?clipId=44e5e0db-4243-49d4-8d60-1874abe5744b>
+2. Two parts: Load the product then edit and update the product
+3. In the  public/javascript/updat.js file
