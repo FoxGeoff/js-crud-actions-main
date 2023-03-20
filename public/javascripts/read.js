@@ -49,7 +49,6 @@ function addList({ data }) {
   results.appendChild(clone);
 }
 /* html call */
-
 function addSingle({ data }) {
   resetContentArea();
   const template = document.querySelector('#result');
@@ -64,7 +63,6 @@ function addSingle({ data }) {
   results.appendChild(clone);
 }
 /* html call */
-
 function notFound() {
   resetContentArea();
 
@@ -72,7 +70,6 @@ function notFound() {
   h2.className = '';
 }
 /* html call */
-
 function resetContentArea() {
   document.querySelector('h2').className = 'hidden';
   const currentProduct = document.getElementById('product-result');
