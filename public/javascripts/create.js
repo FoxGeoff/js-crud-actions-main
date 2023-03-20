@@ -9,7 +9,7 @@ document.getElementById("submit").onclick = function (evt) {
     description: formData.get("description"),
     color: formData.get("color"),
 
-  }).then(processResults);
+  }).then(processResults); // better user experience
 };
 
 /* html code */

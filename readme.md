@@ -208,6 +208,24 @@ document.getElementById('load').onclick = function () {
 ...
 ```
 
-### Task: Creating a New Product
+### Task: Creating a New Product (clip 3:6)
 
 1. in public/javascript/create.js
+
+```Javascript
+document.getElementById("submit").onclick = function (evt) {
+  evt.preventDefault();
+  const formData =  new FormData(document.querySelector("form"));
+
+  axios.post("/api/products", {
+    name: formData.get("name"),
+    price: formData.get("price"),
+    quantity: formData.get("quantity"),
+    description: formData.get("description"),
+    color: formData.get("color"),
+
+  }).then(processResults);
+};
+```
+
+### Task: Updating an Existing Product (clip 3:7)
