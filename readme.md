@@ -208,6 +208,6 @@ document.getElementById('load').onclick = function () {
 ...
 ```
 
-### Task: Creating a Ne Product
+### Task: Creating a New Product
 
 1. in public/javascript/create.js
