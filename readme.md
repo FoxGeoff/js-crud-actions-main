@@ -9,6 +9,7 @@
 4. lowdb - data store file db.json
 5. lowdash-id - generates ids for Db records
 6. nodemon - auto start
+7. Design - <https://digital.gov/>
 
 ### Task: Creating the API (Module 1)
 
