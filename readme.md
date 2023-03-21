@@ -239,3 +239,24 @@ document.getElementById("submit").onclick = function (evt) {
 
 1. Tips for Delete: product-id(input) > delete(submit) > /api/products:id(http)
 2. public/javascript/delete.js file
+
+## Kanban Task: Searching Data (Module #4)
+
+### Task: Creating a full-text search (clip4:2)
+
+1. Ref: <https://app.pluralsight.com/course-player?clipId=f8243b74-8890-4532-9715-7100b9f2c786>
+
+2. Add new route '/products/search' to routes/products.js'
+
+```javascript
+  /* this 'search' must be before 'id' route  */
+  router.route('/products/search').get((req, res) => {
+    const keywords = req.query.keywords;
+    const result = db.get('products').filter((_) => {
+      const fullText = _.description + _.name + _.color;
+      return fullText.indexOf(keywords) !== -1;
+    });
+    res.send(result);
+  });
+  ```
+  
