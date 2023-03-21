@@ -259,4 +259,27 @@ document.getElementById("submit").onclick = function (evt) {
     res.send(result);
   });
   ```
-  
+
+### Task: Creating detail searches (clip4:3)
+
+1. run `npm i -s qs`
+2. Add `const qs = require('qs');`
+
+```javascript
+...
+/**
+   * localhost:3000/api/products/detailSearch?price[val]=259.99
+   * localhost:3000/api/products/detailSearch?price[val]=259.99&name[val]=Essential Backpacks
+   */
+  router.route('/products/detailSearch').get((req, res) => {
+    const query = qs.parse(req.query);
+
+    const results = db.get('products').filter((_) => {
+      return Object.keys(query).reduce((found, key) => {
+        const obj = query[key];
+        found = found && _[key] == obj.val;
+        return found;
+      }, true);
+    });
+...
+```

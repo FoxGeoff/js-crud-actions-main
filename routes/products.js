@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const qs = require('qs');
 
 module.exports = function (db) {
   router
@@ -12,7 +13,11 @@ module.exports = function (db) {
       res.send(db.get('products').insert(newProduct).write());
     });
 
-  /* this 'search' must be before 'id' route  */
+  /**
+   * this 'search' must be before 'id' route
+   *
+   * localhost:3000/api/products/search?keywords=ipsum
+   */
   router.route('/products/search').get((req, res) => {
     const keywords = req.query.keywords;
     const result = db.get('products').filter((_) => {
@@ -20,6 +25,23 @@ module.exports = function (db) {
       return fullText.indexOf(keywords) !== -1;
     });
     res.send(result);
+  });
+  /**
+   * localhost:3000/api/products/detailSearch?price[val]=259.99
+   * localhost:3000/api/products/detailSearch?price[val]=259.99&name[val]=Essential Backpacks
+   */
+  router.route('/products/detailSearch').get((req, res) => {
+    const query = qs.parse(req.query);
+
+    const results = db.get('products').filter((_) => {
+      return Object.keys(query).reduce((found, key) => {
+        const obj = query[key];
+        found = found && _[key] == obj.val;
+        return found;
+      }, true);
+    });
+
+    res.send(results);
   });
 
   router
