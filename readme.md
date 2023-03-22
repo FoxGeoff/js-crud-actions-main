@@ -316,4 +316,6 @@ document.getElementById("submit").onclick = function (evt) {
       }, true);
     });
     res.send(results);
-    ```
+  ```
+
+### Task: Search from the front end
