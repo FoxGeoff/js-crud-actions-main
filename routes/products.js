@@ -16,7 +16,8 @@ module.exports = function (db) {
   /**
    * this 'search' must be before 'id' route
    *
-   * localhost:3000/api/products/search?keywords=ipsum
+   * localhost:3000/api/products/detailSearch?price[val]=259.99
+   * localhost:3000/api/products/detailSearch?price[val]=259.99&name[val]=Essential Backpacks
    */
   router.route('/products/search').get((req, res) => {
     const keywords = req.query.keywords;
@@ -27,8 +28,10 @@ module.exports = function (db) {
     res.send(result);
   });
   /**
-   * localhost:3000/api/products/detailSearch?price[val]=259.99
-   * localhost:3000/api/products/detailSearch?price[val]=259.99&name[val]=Essential Backpacks
+   * localhost:3000/api/products/detailSearch?name[val]=Essential Backpacks
+   * localhost:3000/api/products/detailSearch?price[val]=300&price[op]=lt
+   * localhost:3000/api/products/detailSearch?price[val]=259.9&price[op]=eq&name[val]=Essential Backpacks
+   * localhost:3000/api/products/detailSearch?price[val]=300&price[op]=lt&name[val]=Essential Backpacks
    */
   router.route('/products/detailSearch').get((req, res) => {
     const query = qs.parse(req.query);
@@ -36,11 +39,21 @@ module.exports = function (db) {
     const results = db.get('products').filter((_) => {
       return Object.keys(query).reduce((found, key) => {
         const obj = query[key];
-        found = found && _[key] == obj.val;
+
+        switch (obj.op) {
+          case 'lt':
+            found = found && _[key] < obj.val;
+            break;
+          case 'eq':
+            found = found && _[key] == obj.val;
+            break;
+          default:
+            found = found && _[key].indexOf(obj.val) !== -1;
+            break;
+        }
         return found;
       }, true);
     });
-
     res.send(results);
   });
 

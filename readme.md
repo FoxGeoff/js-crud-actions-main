@@ -283,3 +283,5 @@ document.getElementById("submit").onclick = function (evt) {
     });
 ...
 ```
+
+### Task: Creating detail searches with lt and eq
